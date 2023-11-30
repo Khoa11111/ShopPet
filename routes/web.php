@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckOutController;
 use App\Http\Controllers\HomeController;
@@ -19,9 +20,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class,'index']);
-Route::get('/product', [ProductController::class,'index']);
-Route::get('/cart', [CartController::class,'index']);
-Route::get('/checkout', [CheckOutController::class,'index']);
-Route::get('/login', [LoginController::class,'index']);
-Route::get('/register', [RegisterController::class,'index']);
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::get('/product', [ProductController::class, 'index']);
+
+Route::get('/cart', [CartController::class, 'index']);
+
+Route::get('/checkout', [CheckOutController::class, 'index']);
+
+Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/login', [AuthController::class, 'loginPost'])->name('login.post');
+
+Route::get('/register', [AuthController::class, 'register'])->name('register');
+Route::post('/register', [AuthController::class, 'registerPost'])->name('register.post');
+
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
