@@ -53,7 +53,7 @@
                             <?php $eachtotalprice = $cart->price * $cart->quantity ?>
                             <td class="align-middle">{{$eachtotalprice}}đ</td>
                             <td class="align-middle">
-                                <a href="{{url('/remove_cart'),$cart->id}}" onclick="return confirm('Bạn có chắc muốn hủy món hàng này không?')"><button class="btn btn-sm btn-primary"><i
+                                <a href="{{url('/remove_cart',$cart->id)}}" onclick="return confirm('Bạn có chắc muốn hủy món hàng này không?')"><button class="btn btn-sm btn-primary"><i
                                         class="fa fa-times"></i></button></a>
                             </td>
                         </tr>
