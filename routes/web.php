@@ -3,12 +3,16 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckOutController;
+use App\Http\Controllers\ForgetPasswordController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DetailController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,3 +52,21 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+Route::get('/detail/{id}', [DetailController::class, 'index']);
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});
+
+Route::get('forget-passord',[ForgetPasswordController::class, 'index'])->name('forget-password');
+Route::post('forget-passord',[ForgetPasswordController::class, 'forgetPasswordPost'])->name('forget-password.post');
+
+Route::get('reset-password/{token}',[ForgetPasswordController::class,  'resetPassword'])->name('reset.password');
+Route::post('reset-password',[ForgetPasswordController::class,  'resetPasswordPost'])->name('reset.password.post');

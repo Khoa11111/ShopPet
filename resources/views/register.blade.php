@@ -39,7 +39,7 @@
                             <div class="card-body p-5">
                                 <h2 class="text-uppercase text-center mb-5">Create an account</h2>
 
-                                <form method="POST" action="">
+                                <form method="POST" action="{{route('register.post')}}">
                                     @csrf
                                     <div class="form-outline mb-5">
                                         <input type="text" id="name" name="name"
