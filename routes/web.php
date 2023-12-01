@@ -43,6 +43,12 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/detail/{id}', [DetailController::class, 'index']);
 
+Route::post('/add_cart/{id}', [CartController::class, 'add_cart']);
+
+Route::get('/show_cart', [CartController::class, 'show_cart']);
+
+Route::get('/remove_cart/{id}', [CartController::class, 'remove_cart']);
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

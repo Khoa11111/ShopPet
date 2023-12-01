@@ -184,8 +184,22 @@
                             <div class="card-footer d-flex justify-content-between bg-light border">
                                 <a href="{{url('detail', $products->id)}}" class="btn btn-sm text-dark p-0"><i
                                         class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                                <a href="" class="btn btn-sm text-dark p-0"><i
-                                        class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+                                <form action="{{url('add_cart', $products->id)}}" method="Post">
+
+                                    @csrf
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <input type="number" name="quantity" value="1" min="1" style="width: 50px">
+                                        </div>
+                                        
+                                        <div>
+                                            <input type="submit" class="btn btn-sm text-dark p-0" value="Add To Cart"><i
+                                                class="fas fa-shopping-cart text-primary mr-1"></i></input>
+                                        </div>
+                                    </div>     
+
+                                </form>                    
                             </div>
                         </div>
                     </div>

@@ -37,7 +37,7 @@
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Trang</a>
                             <div class="dropdown-menu rounded-0 m-0">
-                                <a href="/cart" class="dropdown-item">Giỏ hàng</a>
+                                <a href="{{url('show_cart')}}" class="dropdown-item">Giỏ hàng</a>
                                 <a href="/checkout" class="dropdown-item">Thanh toán</a>
                             </div>
                         </div>

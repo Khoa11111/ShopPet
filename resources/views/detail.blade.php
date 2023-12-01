@@ -62,8 +62,24 @@
                 @endif
                 <p class="mb-4">{{$product->description}}
                 </p>
-                <p class="mb-4">Số lượng hiện còn: 25</p>
-                <div class="d-flex align-items-center mb-4 pt-2">
+                <p class="mb-4">Số lượng hiện còn: {{$product->current_quentity}}</p>
+                <form action="{{url('add_cart', $product->id)}}" method="Post">
+
+                                    @csrf
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <input type="number" name="quantity" value="1" min="1">
+                                        </div>
+                                        
+                                        <button class="btn btn-primary btn-plus-4">
+                                            <input type="submit" class="btn btn-sm text-dark p-0" value="Add To Cart"><i
+                                                class="fas fa-shopping-cart text-primary mr-1"></i></input>
+                                        </button>
+                                    </div>     
+
+                                </form>          
+                <!--<div class="d-flex align-items-center mb-4 pt-2">
                     <div class="input-group quantity mr-3" style="width: 130px;">
                         <div class="input-group-btn">
                             <button class="btn btn-primary btn-minus">
@@ -77,8 +93,9 @@
                             </button>
                         </div>
                     </div>
-                    <button class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</button>
-                </div>
+                    <button href="url({/cart},$product->id)" class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</button>
+                </div>-->
+                <br\>
                 <div class="d-flex pt-2">
                     <p class="text-dark font-weight-medium mb-0 mr-2">Share on:</p>
                     <div class="d-inline-flex">
@@ -98,7 +115,7 @@
                 </div>
             </div>
         </div>
-        <div class="row px-xl-5">
+        <!--<div class="row px-xl-5">
             <div class="col">
                 <div class="nav nav-tabs justify-content-center border-secondary mb-4">
                     <a class="nav-item nav-link active" data-toggle="tab" href="#tab-pane-1">Description</a>
@@ -221,7 +238,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
     <!-- Shop Detail End -->
 
 
@@ -238,10 +255,15 @@
                             <img class="img-fluid w-100" src="img/product-1.jpg" alt="">
                         </div>
                         <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                            <h6 class="text-truncate mb-3">Colorful Stylish Shirt</h6>
+                            <h6 class="text-truncate mb-3">{{$product->title}}</h6>
                             <div class="d-flex justify-content-center">
-                                <h6>$123.00</h6>
-                                <h6 class="text-muted ml-2"><del>$123.00</del></h6>
+                                <h3 class="text-truncate mb-3">{{$product->title}}</h3>
+                                @if($product->discount!=null)
+                                <h6>{{$product->discount}}đ</h6>
+                                <h6 class="text-muted ml-2"><del>{{$product->price}}đ</del></h6>
+                                @else           
+                                <h6>{{$product->price}}đ</h6>
+                                @endif
                             </div>
                         </div>
                         <div class="card-footer d-flex justify-content-between bg-light border">
