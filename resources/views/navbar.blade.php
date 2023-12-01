@@ -41,7 +41,7 @@
                                 <a href="/checkout" class="dropdown-item">Thanh toán</a>
                             </div>
                         </div>
-                        <a href="" class="nav-item nav-link">Liên hệ</a>
+                        <a href="/sanpham" class="nav-item nav-link">CERD Sản Phẩm</a>
                     </div>
                     <div class="navbar-nav ml-auto py-0">
                         @auth
