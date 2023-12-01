@@ -9,6 +9,8 @@ use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
+use App\Http\Controllers\SanphamController;
+
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -37,6 +39,8 @@ Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register', [AuthController::class, 'registerPost'])->name('register.post');
 
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::resource('/sanpham',SanphamController::class);
 
 Route::get('forget-passord',[ForgetPasswordController::class, 'index'])->name('forget-password');
 Route::post('forget-passord',[ForgetPasswordController::class, 'forgetPasswordPost'])->name('forget-password.post');
