@@ -7,6 +7,8 @@ use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
@@ -42,6 +44,13 @@ class AuthController extends Controller
             'password' => 'required'
         ]);
 
+        $token = Str::random(64);
+
+        Mail::send("emails.verify-email", ['token' => $token], function ($message) use ($request){
+            $message -> to($request->email);
+            $message -> subject("Verify Email");
+        });
+
         $data['name'] = $request->name;
         $data['email'] = $request->email;
         $data['password'] = Hash::make($request->password);
@@ -50,7 +59,7 @@ class AuthController extends Controller
         if (!$user) {
             return redirect(route('register'))->with("error", "Registration failed, try again.");
         }
-        return redirect(route('register'))->with("success", "Registration success, Login to access");
+        return redirect(route('register'))->with("success", "We have send an email to verify.");
     }
 
     function logout()
