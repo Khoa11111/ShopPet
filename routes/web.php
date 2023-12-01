@@ -12,6 +12,8 @@ use App\Http\Controllers\DetailController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
+use App\Http\Controllers\SanphamController;
+
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -70,6 +72,8 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+Route::resource('/sanpham',SanphamController::class);
 
 Route::get('forget-passord',[ForgetPasswordController::class, 'index'])->name('forget-password');
 Route::post('forget-passord',[ForgetPasswordController::class, 'forgetPasswordPost'])->name('forget-password.post');
